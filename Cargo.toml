@@ -1,0 +1,10 @@
+[package]
+name = "rusty_pixels"
+version = "0.1.0"
+authors = ["Marek Onuszko <marek.onuszko@gmail.com>"]
+
+[dependencies]
+image = "*"
+rand = "0.3"
+noisy_float = "0.1.4"
+palette = "0.2.1"
