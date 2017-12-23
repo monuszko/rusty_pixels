@@ -1,4 +1,6 @@
 *.swp
+*.jpg
+*.png
 
 /target/
 **/*.rs.bk
