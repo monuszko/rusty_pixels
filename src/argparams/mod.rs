@@ -8,7 +8,7 @@ mod sorting;
 
 
 pub struct Config {
-    image_input_path: String,
+    pub image_input_path: String,
     output_image_path: String,
     pub interval_function: fn(pixels: &Vec<Vec<image::Rgba<u8>>>, args: &Config) -> Vec<Vec<u32>>,
     interval_file_path: Option<String>,
@@ -21,20 +21,24 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new(args: &[String]) -> Config {
-
-        Config {
-            image_input_path: args[1].clone(),
-            output_image_path: String::from("output.png"),
-            interval_function: interval::threshold,
-            interval_file_path: None,
-            bottom_threshold: 0.25,
-            upper_threshold: 0.8,
-            clength: 50,
-            angle: 0,
-            randomness: 0,
-            sorting_function: sorting::lightness,
+    pub fn new(args: &[String]) -> Result<Config, &'static str> {
+        if args.len() < 2 {
+            return Err("not enough arguments");
         }
 
+        Ok(
+            Config {
+                image_input_path: args[1].clone(),
+                output_image_path: String::from("output.png"),
+                interval_function: interval::threshold,
+                interval_file_path: None,
+                bottom_threshold: 0.25,
+                upper_threshold: 0.8,
+                clength: 50,
+                angle: 0,
+                randomness: 0,
+                sorting_function: sorting::lightness,
+            }
+        )
     }
 }
