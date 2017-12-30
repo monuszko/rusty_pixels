@@ -1,7 +1,6 @@
-extern crate image;
 extern crate noisy_float;
 
-use self::noisy_float::prelude::*;
+use image;
 
 pub mod util;
 

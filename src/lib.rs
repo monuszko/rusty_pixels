@@ -1,5 +1,9 @@
 extern crate image;
+extern crate palette;
 extern crate rand;
+extern crate noisy_float;
+#[macro_use]
+extern crate clap;
 
 use std::error::Error;
 use std::fs::File;
@@ -12,7 +16,7 @@ mod sorter;
 
 pub fn run(config: argparams::Config) -> Result<(), Box<Error>> {
     println!("Opening image...");
-    let mut img = image::open(&config.image_input_path)?;
+    let mut img = image::open(&config.input)?;
 
     //println!("Converting to RGBA...");
     //let img = img.to_rgba();
@@ -26,7 +30,6 @@ pub fn run(config: argparams::Config) -> Result<(), Box<Error>> {
     let mut pixels: Vec<Vec<image::Rgba<u8>>> = Vec::new();
     let width = img.width();
     for y in 0..img.height() {
-        let row = img.crop(0, y, width, 1);
         let mut v: Vec<image::Rgba<u8>> = Vec::new();
         for x in 0..width {
             v.push(img.get_pixel(x, y));
@@ -45,7 +48,7 @@ pub fn run(config: argparams::Config) -> Result<(), Box<Error>> {
     // if argparams.angle is not 0:
 
     println!("Saving image...");
-    let ref mut fout = File::create("test.png").unwrap();
+    let ref mut fout = File::create(config.output).unwrap();
 
 
     for x in 0..img.width() {
