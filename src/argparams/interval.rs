@@ -1,5 +1,4 @@
-extern crate image;
-
+use image;
 use super::Config;
 use super::sorting::util;
 

@@ -1,6 +1,5 @@
-extern crate noisy_float;
-
 use image;
+use noisy_float;
 
 pub mod util;
 

@@ -1,9 +1,6 @@
-extern crate image;
-extern crate rand;
-extern crate noisy_float;
-
 use rand::{thread_rng, Rng};
-use self::noisy_float::prelude::*;
+use noisy_float::prelude::*;
+use image;
 
 use argparams::Config;
 

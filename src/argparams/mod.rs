@@ -31,19 +31,23 @@ impl Config {
                 .index(1)
                 )
             .arg(Arg::with_name("OUTPUT")
+                .short("o")
                 .help("Output filename")
                 .default_value("test.png")
                 )
             .arg(Arg::with_name("lower")
                 .help("How dark must a pixel be to be considered as a 'border'
-                       for sorting ?  Takes values from 0-1, 0.25 by default.
-                       Used in edges and threshold modes.")
+for sorting ?  Takes values from 0-1, 0.25 by default.
+Used in edges and threshold modes.")
                 .short("t")
                 .default_value("0.25")
                 .long("lower")
                 )
             .arg(Arg::with_name("upper")
-                .help("How bright must a pixel be to be considered as a 'border' for sorting ?  Takes values from 0-1, 0.8 by default. Used in edges and threshold modes.")
+                .help("How bright must a pixel be to be considered as a 'border'
+for sorting ?  Takes values from 0-1, 0.8 by default.
+Used in edges and threshold modes."
+                )
             .short("u")
             .default_value("0.8")
             .long("upper")
