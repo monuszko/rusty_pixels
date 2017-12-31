@@ -7,7 +7,7 @@ use rusty_pixels::argparams::Config;
 
 fn main() {
     let config = Config::new().unwrap_or_else(|err| {
-        eprintln!("Problem parsing arguments: {}", err);
+        eprintln!("{}", err);
         process::exit(1);
     });
     
