@@ -8,7 +8,7 @@ mod sorting;
 
 fn get_args() -> clap::ArgMatches<'static> {
     clap::App::new("rusty_pixels")
-        .version("0.3.0")
+        .version("0.4.0")
         .author("Marek Onuszko <marek.onuszko@gmail.com>")
         .about("mangles images to create glitch art (pixel sorting)")
         .arg(clap::Arg::with_name("INPUT")
@@ -53,7 +53,7 @@ Used in modes: random, waves")
         .arg(clap::Arg::with_name("interval")
             .short("i")
             .long("interval-function")
-            .possible_values(&["threshold", "random"])
+            .possible_values(&["threshold", "random", "waves"])
             .default_value("threshold")
             )
     .get_matches()
@@ -86,6 +86,7 @@ impl Config {
         let clength = value_t!(matches, "clength", u32)?;
         let interval_function = match matches.value_of("interval").unwrap() {
             "random" => interval::random,
+            "waves" =>  interval::waves,
             _        => interval::threshold,
         };
 
