@@ -4,9 +4,23 @@ use palette::{Rgb, Hsv, FromColor};
 use rand::{thread_rng, Rng};
 
 
-pub fn lightness(pixel: &image::Rgba<u8>) -> N32 {
+pub fn hsv_hue(pixel: &image::Rgba<u8>) -> N32 {
+    let prgb = Rgb::new_u8(pixel.data[0], pixel.data[1], pixel.data[2]);
+    n32(Hsv::from_rgb(prgb).hue.to_degrees())
+}
+
+pub fn hsv_saturation(pixel: &image::Rgba<u8>) -> N32 {
+    let prgb = Rgb::new_u8(pixel.data[0], pixel.data[1], pixel.data[2]);
+    n32(Hsv::from_rgb(prgb).saturation)
+}
+
+pub fn hsv_value(pixel: &image::Rgba<u8>) -> N32 {
     let prgb = Rgb::new_u8(pixel.data[0], pixel.data[1], pixel.data[2]);
     n32(Hsv::from_rgb(prgb).value)
+}
+
+pub fn rgb_minimum(pixel: &image::Rgba<u8>) -> N32 {
+    n32(*pixel.data.iter().min().unwrap() as f32)
 }
 
 
